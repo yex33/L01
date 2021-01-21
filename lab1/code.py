@@ -8,8 +8,8 @@ def are_vaild_groups(stu_list, groups_list):
 
     for group in groups_list:
         for i in group:
-            if len(group) == len(stu_list):
-                if collections.Counter(group) >= collections.Counter(stu_list):
+            if len(group) >= len(stu_list):
+                if collections.Counter(group) == collections.Counter(stu_list):
                     return True
             return False
 
