@@ -8,6 +8,8 @@
 }
 \usepackage{graphicx}
 \graphicspath{{./images/}}
+\usepackage{float}
+\usepackage[page]{appendix}
 
 \title{SE 2XB3 Group 4 Report 1}
 \author{
@@ -53,40 +55,65 @@
 \subsection{Experiment 1: Push and Pull}
 All group members successfully pushed their new files to the remote repository
 and pulled the files created by other group members from the remote repository.
-\begin{figure}[h]
-  \includegraphics[width=\textwidth]{e1m1}
-  \caption{Member 1}
-\end{figure}
-\begin{figure}[h]
-  \includegraphics[width=\textwidth]{e1m2}
-  \caption{Member 2}
-\end{figure}
-\begin{figure}[h]
-  \includegraphics[width=\textwidth]{e1m3}
-  \caption{Member 3}
-\end{figure}
-
-\newpage{}
+Screenshots can be found in the appendices.
 
 \subsection{Experiment 2: Revert and Reset}
 
-The git revert command can be considered an 'undo' type command, however, it is
-not a traditional undo operation. Instead of removing the commit from the
-project history, it figures out how to invert the changes introduced by the
-commit and appends a new commit with the resulting inverse content. This
-prevents Git from losing history, which is important for the integrity of your
-revision history and for reliable collaboration.
+The revert command is a special type of commit which stage and save the inverse
+of the changes done by the commit specified in the command argument. This
+reverting changes commit is placed at the end of the commit history chain.
 
-Reverting should be used when you want to apply the inverse of a commit from
-your project history. This can be useful, for example, if you’re tracking down a
-bug and find that it was introduced by a single commit. Instead of manually
-going in, fixing it, and committing a new snapshot, you can use git revert to
-automatically do all of this for you.
+The reset command provides a way to manipulate the \verb|HEAD| pointer. The
+commonly used reset modes are mixed (default mode when mode flags are not
+specified), soft, and hard. The reset command invoked in the former two modes
+moves the \verb|HEAD| pointer to the specified commit, while not changing the
+files in the current working directory at all, while in the latter mode, local
+files are reset to exactly like the specified commit.
 
-The git reset command is a complex and versatile tool for undoing changes. It
-has three primary forms of invocation. These forms correspond to command line
-arguments --soft, --mixed, --hard. The three arguments each correspond to Git's
-three internal state management mechanism's, The Commit Tree (HEAD), The Staging
-Index, and The Working Directory.
+Reverting should be used when one wants to apply the inverse of a commit from
+the project history. Resetting should be used when one wants to alter the
+project history, either compressing multiple commits into one or change part of
+the commit chain entirely.
 
+\subsection{Experiment 3: Implementing \texttt{are\_valid\_groups}}
+
+Kehao created the code.py file and pushed to the repo, all of us pulled the same
+file and started to work locally. Once we were done coding, Kehao added
+committed and pushed and file without any conflict. While Xunzhou trying to push
+the modified file to the repo, conflicts showed up. With the fact that Kehao
+updated code.py before Xunzhou, Xunzhou need to merge his file with the Kehao's
+version. Xunzhou chose to keep both of their codes and added comments to specify
+their own versions. Xunzhou resolved the conflict manually, then he added,
+committed and pushed the merged version. Finally, Anhao encountered the same
+conflict as Xunzhou did, he also kept all of the codes remained and added
+comments for his version. After resolving the conflict, Anhao updated the
+code.py and pushed it to the repo. In addition, all of us pulled the newest
+version to our local machine and discussed the pros and cons about our code. We
+decided to use Xunzhou's code as our final version, also updated it to the
+repository. Finally we had the same final version of the code.py locally.
+
+\newpage{}
+
+\begin{appendices}
+  \section{Experiment 1 Screenshots}
+
+  \begin{figure}[H]
+    \includegraphics[width=\textwidth]{e1m1}
+    \caption{Member 1}
+  \end{figure}
+  \begin{figure}[H]
+    \includegraphics[width=\textwidth]{e1m2}
+    \caption{Member 2}
+  \end{figure}
+  \begin{figure}[H]
+    \includegraphics[width=\textwidth]{e1m3}
+    \caption{Member 3}
+  \end{figure}
+
+  \section{Experiment 2 Screenshot}
+  \begin{figure}[H]
+    \includegraphics[width=\textwidth]{e2}
+  \end{figure}
+
+\end{appendices}
 \end{document}
