@@ -1,16 +1,16 @@
-#Anhao Version
-import collections
+# Anhao Version
+# import collections
 
 
-def are_vaild_groups(stu_list, groups_list):
-    # stu_list = [1, 2, 3, 4]
-    # groups_list = [[1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6], [4, 5, 6, 7]]
+# def are_vaild_groups(stu_list, groups_list):
+#     # stu_list = [1, 2, 3, 4]
+#     # groups_list = [[1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6], [4, 5, 6, 7]]
 
-    for group in groups_list:
-        if len(group) >= len(stu_list):
-            if collections.Counter(group) == collections.Counter(stu_list):
-                return True
-        return False
+#     for group in groups_list:
+#         if len(group) >= len(stu_list):
+#             if collections.Counter(group) == collections.Counter(stu_list):
+#                 return True
+#         return False
 
 # xunzhou version
 def are_valid_groups(student_numbers, groups):
@@ -20,14 +20,14 @@ def are_valid_groups(student_numbers, groups):
     return True
 
 # kehao version
-def are_valid_groups(snList, groupList):
-    counter = 0
-    for i in snList:
-        for j in range(0, len(groupList)):
-            for k in range(0, len(groupList[j])):
-                if i == groupList[j][k]:
-                    counter += 1
-    if counter >= len(snList):
-        return True
-    else:
-        return False
+# def are_valid_groups(snList, groupList):
+#     counter = 0
+#     for i in snList:
+#         for j in range(0, len(groupList)):
+#             for k in range(0, len(groupList[j])):
+#                 if i == groupList[j][k]:
+#                     counter += 1
+#     if counter >= len(snList):
+#         return True
+#     else:
+#         return False
