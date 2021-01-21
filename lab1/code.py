@@ -7,11 +7,10 @@ def are_vaild_groups(stu_list, groups_list):
     # groups_list = [[1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6], [4, 5, 6, 7]]
 
     for group in groups_list:
-        for i in group:
-            if len(group) >= len(stu_list):
-                if collections.Counter(group) == collections.Counter(stu_list):
-                    return True
-            return False
+        if len(group) >= len(stu_list):
+            if collections.Counter(group) == collections.Counter(stu_list):
+                return True
+        return False
 
 # xunzhou version
 def are_valid_groups(student_numbers, groups):
