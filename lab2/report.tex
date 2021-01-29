@@ -8,6 +8,10 @@
   margin=1in,
 }
 
+\usepackage{graphicx}
+\graphicspath{{.}}
+\usepackage{float}
+
 \title{SE 2XB3 Group 4 Report 2}
 \author{
   Huang, Kehao \\
@@ -35,6 +39,7 @@
 \section{Timeing Data}
 
 \subsection{Analysis of $f(n)$}
+
 $f(n)$ is determined to be growing in the order of $\mathcal{O}(n)$. We started by 
 plotting $f(n)$ on a x-y plane and observed a graph similar to that of 
 a linear function. We formed our speculation on $f(n)$ being linear. A 
@@ -45,6 +50,15 @@ function. To confirm our guesses, we plotted a log-log graph for $f(n)$
 and performed linear regression on the plot. Both the slope of the trend 
 line and the $R^{2}$ value were approximately 0.9994. This 
 is strong evidence that $f(n)$ grows in the order of $\mathcal{O}(n)$.
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{fn-linreg.png}
+    \caption{f(n) linear regression}
+\end{figure}
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{fn-log-linreg.png}
+    \caption{f(n) log linear regression}
+\end{figure}
 
 \subsection{Analysis of $g(n)$}
 By observing the graph of $g(n)$, our guess on the order of growth was polynomial 
