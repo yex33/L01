@@ -50,14 +50,13 @@ function. To confirm our guesses, we plotted a log-log graph for $f(n)$
 and performed linear regression on the plot. Both the slope of the trend 
 line and the $R^{2}$ value were approximately 0.9994. This 
 is strong evidence that $f(n)$ grows in the order of $\mathcal{O}(n)$.
-
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{fn-linreg.png}
-    \caption{f(n) linear regression}
+    \caption{f(n) fitting line}
 \end{figure}
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{fn-log-linreg.png}
-    \caption{f(n) log linear regression}
+    \caption{f(n) log regression}
 \end{figure}
 
 \subsection{Analysis of $g(n)$}
@@ -71,20 +70,39 @@ nly 43 pairs of data were given for $g(n)$, so the insufficient amount of data
 ould cause the difference between 2.8548 and 3(the expected growth rate). 
 Overall, with the finite given date set, we concluded that $g(n)$ has a growth 
 order of $\mathcal{O}(x^{3})$
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{gn-1.png}
+    \caption{g(n) fitting line}
+\end{figure}
+
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{gn-2.png}
+    \caption{f(n) log regression}
+\end{figure}
 
 \subsection{Analysis of $h(n)$}
 After plotting the $h(n)$ data set into the graph, our first intuition about the 
-type of growth was linear. However, by the visual contrast with the $h(n)$ (figureh(n)1), 
+type of growth was linear. However, by the visual contrast with the $h(n)$ (figure5), 
 we all thought that the fitting line bended too much as a linear function. 
 Therefore, we made the second graph which plotted with $log(n)$ and $log(runtime)$ 
-(figureh(n)2), as the x-axis and the y-axis respectively. Then, we analyzed the 
+(figure6), as the x-axis and the y-axis respectively. Then, we analyzed the 
 coefficient of the term that has the highest power($x$). Compared to 1, the 
 oefficient 1.1069 is off by quite a bit. At this point we were uncertain about 
 the intuition we had at the beginning. Because the coefficient is larger than 1 
 which means it grows faster than linear, however, not as much as polynomial, 
 exponential or power functions. At this point, we doubted that it could be $nlog(n)$ 
 form. Last but not least, we divided the runtime($nlog(n)$) by its number($n$) and we 
-got the figure(h(n)3). Our assumption was right and the graph fits as a log function. 
+got a $logn$ graph (figure7). Our assumption was right and the graph fits as a log function. 
 In conclusion, the $h(n)$ grows in the order of $\mathcal{O}(nlog(n))$
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{hn-1.png}
+    \caption{h(n) fitting line}
+\end{figure}\begin{figure}[h]
+    \includegraphics[width=\linewidth]{hn-2.png}
+    \caption{h(n) log regression}
+\end{figure}\begin{figure}[h]
+    \includegraphics[width=\linewidth]{hn-3.png}
+    \caption{$g(n)/n$ graph }
+\end{figure}
 
 \end{document}
