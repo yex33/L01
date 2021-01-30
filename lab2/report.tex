@@ -198,6 +198,7 @@ on.
 
 The plotted graph matches our prediction. As shown in Figure \ref{fig:lookup},
 the runtime of each list access is independent of which element is accessed.
+lookup grows in the order of \( \mathcal{O}(1) \).
 \begin{figure}[H]
   \includegraphics[width=0.8\linewidth]{lookup.png}
   \centering
@@ -234,7 +235,7 @@ than the majority, the result is still reliable.
 The result graph is as neat as our prediction. Figure \ref{fig:append} overall
 shows a straight horizontal line along with a few out of line data points. It
 proves our guesses that the \texttt{list.append} method has a constant growth
-order.
+order \( \mathcal{O}(1) \).
 \begin{figure}[H]
   \includegraphics[width=0.8\linewidth]{append.png}
   \centering
