@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+python-language-server = "*"
+pyls-isort = "*"
+flake8 = "*"
+autoflake = "*"
+ptvsd = ">=4.2"
+importmagic = "*"
+epc = "*"
+numpy = "*"
+matplotlib = "*"
+sklearn = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

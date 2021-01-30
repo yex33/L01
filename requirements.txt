@@ -1,0 +1,9 @@
+python-language-server
+pyls-isort
+flake8
+autoflake
+ptvsd>=4.2
+importmagic
+epc
+numpy
+matplotlib
