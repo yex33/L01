@@ -19,6 +19,12 @@ def quicksort_inplace(L):
 
 
 def dual_pivot_quicksort(L):
+    copy = dual_pivot_quicksort_copy(L)
+    for i in range(len(L)):
+        L[i] = copy[i]
+
+
+def dual_pivot_quicksort_copy(L):
     if len(L) <= 1:
         return L
     elif len(L) == 2:
@@ -32,12 +38,18 @@ def dual_pivot_quicksort(L):
             parts[1].append(element)
         else:
             parts[2].append(element)
-    return (dual_pivot_quicksort(parts[0]) + [pivots[0]]
-            + dual_pivot_quicksort(parts[1]) + [pivots[1]]
-            + dual_pivot_quicksort(parts[2]))
+    return (dual_pivot_quicksort_copy(parts[0]) + [pivots[0]]
+            + dual_pivot_quicksort_copy(parts[1]) + [pivots[1]]
+            + dual_pivot_quicksort_copy(parts[2]))
 
 
 def tri_pivot_quicksort(L):
+    copy = tri_pivot_quicksort_copy(L)
+    for i in range(len(L)):
+        L[i] = copy[i]
+
+
+def tri_pivot_quicksort_copy(L):
     if len(L) <= 1:
         return L
     elif len(L) <= 3:
@@ -53,13 +65,19 @@ def tri_pivot_quicksort(L):
             parts[2].append(element)
         else:
             parts[3].append(element)
-    return (tri_pivot_quicksort(parts[0]) + [pivots[0]]
-            + tri_pivot_quicksort(parts[1]) + [pivots[1]]
-            + tri_pivot_quicksort(parts[2]) + [pivots[2]]
-            + tri_pivot_quicksort(parts[3]))
+    return (tri_pivot_quicksort_copy(parts[0]) + [pivots[0]]
+            + tri_pivot_quicksort_copy(parts[1]) + [pivots[1]]
+            + tri_pivot_quicksort_copy(parts[2]) + [pivots[2]]
+            + tri_pivot_quicksort_copy(parts[3]))
 
 
 def quad_pivot_quicksort(L):
+    copy = quad_pivot_quicksort_copy(L)
+    for i in range(len(L)):
+        L[i] = copy[i]
+
+
+def quad_pivot_quicksort_copy(L):
     if len(L) <= 1:
         return L
     elif len(L) <= 4:
@@ -77,8 +95,8 @@ def quad_pivot_quicksort(L):
             parts[3].append(element)
         else:
             parts[4].append(element)
-    return (quad_pivot_quicksort(parts[0]) + [pivots[0]]
-            + quad_pivot_quicksort(parts[1]) + [pivots[1]]
-            + quad_pivot_quicksort(parts[2]) + [pivots[2]]
-            + quad_pivot_quicksort(parts[3]) + [pivots[3]]
-            + quad_pivot_quicksort(parts[4]))
+    return (quad_pivot_quicksort_copy(parts[0]) + [pivots[0]]
+            + quad_pivot_quicksort_copy(parts[1]) + [pivots[1]]
+            + quad_pivot_quicksort_copy(parts[2]) + [pivots[2]]
+            + quad_pivot_quicksort_copy(parts[3]) + [pivots[3]]
+            + quad_pivot_quicksort_copy(parts[4]))
