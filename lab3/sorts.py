@@ -10,7 +10,9 @@ def partition(L, low, high):
             temp = L[i]
             L[i] = L[j]
             L[j] = temp
-    L[i+1], L[high] = L[high], L[i+1]
+    temp2 = L[i + 1]
+    L[i + 1] = L[high]
+    L[high] = temp2
     return i + 1
 
 
