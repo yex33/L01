@@ -1,0 +1,55 @@
+\documentclass[titlepage, 12pt]{article}
+
+\usepackage{framed}
+\usepackage{enumitem}
+\usepackage{geometry}
+\geometry{
+  letterpaper,
+  margin=1in,
+}
+
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+\usepackage{float}
+
+\title{SE 2XB3 Group 4 Report 3}
+\author{
+  Huang, Kehao \\
+  400235182 \\
+  \texttt{huangk53@mcmaster.ca} \\
+  L01
+  \and
+  Jiao, Anhao \\
+  400251837 \\
+  \texttt{jiaoa3@mcmaster.ca} \\
+  L01
+  \and
+  Ye, Xunzhou \\
+  400268576 \\
+  \texttt{yex33@mcmaster.ca} \\
+  L01
+}
+\date{5 February 2021}
+
+\begin{document}
+\maketitle{}
+
+\newpage{}
+
+\section{Quicksort}
+
+\subsection{In-Place Version}
+
+Our implementation has it natural ``in-place'' advantage over the given
+implementation, which uses auxiliary memory to store different partitions for
+each recursion call. Specifically, our ``in-place'' implementation swaps
+elements in the array and uses two parameter \texttt{low} and \texttt{high} to
+mark the array partition on which a recursion call should work. The amount of
+memory used for the whole sorting process is independent of the input size, in
+this case, is the length of the input array. On the other hand, the given
+``non-in-place'' implementation copies elements from the input array to fresh
+allocated auxiliary arrays. Each auxiliary array is used as the new partition
+for the subsequent recursion call. And the returned sorted array is a
+concatenation of two sorted partitions and the pivot. Both the element copying
+action and list concatenation are costly, in terms of both time and space
+complexity.
