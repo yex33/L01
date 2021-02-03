@@ -65,9 +65,9 @@ qs4_data = np.array(qua_res)
 
 # plotting for muti-poivt
 plt.figure()
-plt.scatter(N, qs1_data, s=0.5, label="my_quicksort")
-plt.scatter(N, qs2_data, s=0.5, label="dual_pivot")
-plt.scatter(N, qs3_data, s=0.5, label="tri_pivot")
-plt.scatter(N, qs4_data, s=0.5, label="quad_pivot")
+plt.plot(N, qs1_data, color='black', linewidth=0.5, label="my_quicksort")
+plt.plot(N, qs2_data, color='green', linewidth=0.5, label="dual_pivot")
+plt.plot(N, qs3_data, color='blue', linewidth=0.5, label="tri_pivot")
+plt.plot(N, qs4_data, color='red', linewidth=0.5, label="quad_pivot")
 plt.legend()
 plt.show()
