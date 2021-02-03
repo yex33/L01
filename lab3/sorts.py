@@ -1,21 +1,21 @@
 def quicksort_inplace_rec(L, low, high):
-    if high is None:
-        high = len(L) - 1
+    i = low - 1
     if low < high:
-        i = low - 1
         pivot = L[high]
         for j in range(low, high):
             if L[j] <= pivot:
                 i += 1
                 L[i], L[j] = L[j], L[i]
-                L[i + 1], L[high] = L[high], L[i + 1]
-        p = i + 1
+        L[i + 1], L[high] = L[high], L[i + 1]
+    else:
+        return
+    p = i + 1
     quicksort_inplace_rec(L, low, p-1)
     quicksort_inplace_rec(L, p+1, high)
 
 
 def quicksort_inplace(L):
-    return quicksort_inplace_rec(L, 0, None)
+    return quicksort_inplace_rec(L, 0, len(L) - 1)
 
 
 def dual_pivot_quicksort(L):
