@@ -1,3 +1,6 @@
+from lab3 import quicksort_copy
+
+
 def quicksort_inplace_rec(L, low, high):
     i = low - 1
     if low < high:
@@ -28,8 +31,8 @@ def dual_pivot_quicksort_copy(L):
     if len(L) <= 1:
         return L
     elif len(L) == 2:
-        return quicksort_inplace(L)
-    pivots = quicksort_inplace([L[0], L[1]])
+        return quicksort_copy(L)
+    pivots = quicksort_copy([L[0], L[1]])
     parts = [[], [], []]
     for element in L[2:]:
         if element < pivots[0]:
@@ -53,8 +56,8 @@ def tri_pivot_quicksort_copy(L):
     if len(L) <= 1:
         return L
     elif len(L) <= 3:
-        return quicksort_inplace(L)
-    pivots = quicksort_inplace([L[0], L[1], L[2]])
+        return quicksort_copy(L)
+    pivots = quicksort_copy([L[0], L[1], L[2]])
     parts = [[], [], [], []]
     for element in L[3:]:
         if element < pivots[0]:
@@ -81,8 +84,8 @@ def quad_pivot_quicksort_copy(L):
     if len(L) <= 1:
         return L
     elif len(L) <= 4:
-        return quicksort_inplace(L)
-    pivots = quicksort_inplace([L[0], L[1], L[2], L[3]])
+        return quicksort_copy(L)
+    pivots = quicksort_copy([L[0], L[1], L[2], L[3]])
     parts = [[], [], [], [], []]
     for element in L[4:]:
         if element < pivots[0]:
