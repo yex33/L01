@@ -103,3 +103,30 @@ def quad_pivot_quicksort_copy(L):
             + quad_pivot_quicksort_copy(parts[2]) + [pivots[2]]
             + quad_pivot_quicksort_copy(parts[3]) + [pivots[3]]
             + quad_pivot_quicksort_copy(parts[4]))
+
+
+def selection_sort(L):
+    for i in range(len(L)-1):
+        min_idx = i
+        for j in range(i+1, len(L)-1):
+            if L[j] < L[min_idx]:
+                min_idx = j
+        L[i], L[min_idx] = L[min_idx], L[i]
+
+
+def bubble_sort(L):
+    for i in range(len(L)-1):
+        for j in range(0, len(L)-i-1):
+            if L[j] > L[j+1]:
+                L[j], L[j+1] = L[j+1], L[j]
+
+
+def insertion_sort(L):
+    for i in range(1, len(L)):
+        curr = L[i]
+        pos = i
+        while pos > 0 and L[pos-1] > curr:
+            L[pos] = L[pos-1]
+            pos = pos-1
+        L[pos] = curr
+
