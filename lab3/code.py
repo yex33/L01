@@ -199,7 +199,7 @@ def small_exp():
     ins_res = []  # insertion results
     for n in n_range:
         L = create_random_list(n)
-        qui = quicksort_inplace
+        qui = quad_pivot_quicksort
         bub = bubble_sort
         sel = selection_sort
         ins = insertion_sort
@@ -225,7 +225,7 @@ def small_exp():
 
     # plotting for small lists
     plt.figure(figsize=(7, 4.8))
-    plt.plot(N, qui_data, color="black", lw=1, label="quicksort\_inplace")
+    plt.plot(N, qui_data, color="black", lw=1, label="quad-pivot quicksort")
     plt.plot(N, bub_data, color="green", lw=1, label="bubble sort")
     plt.plot(N, sel_data, color="blue", lw=1, label="selection sort")
     plt.plot(N, ins_data, color="red", lw=1, label="insertion sort")
