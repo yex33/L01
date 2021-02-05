@@ -107,7 +107,7 @@ quicksort finished faster as the number of pivots increased. The runtime
 differences between variants widened as the input size increased. However, the
 time advantage of the quad-pivot variant is only significant in the input range
 \( n > 10^6 \). Figure \ref{fig:multp-zoomed} provide the zoomed-in views for \(
-10^4 <= n <= 10^5 \) and \( 10^4 <= n <= 10^6 \). The performance of all
+10^4 \leq n \leq 10^5 \) and \( 10^4 \leq n \leq 10^6 \). The performance of all
 algorithms is rather unstable in these two ranges. There is no clear superior
 out of the four tested variants. Therefore, the quad-pivot quicksort is
 concluded to be the fastest solely based on its better performance on large
@@ -132,4 +132,49 @@ sized inputs.
   \caption{Quicksort variants on lower scale \( n \)}
   \label{fig:multp-zoomed}
 \end{figure}
+
+\subsection{Worstcase Performance}
+
+The worstcase performance of quicksort happens when the input list is already
+sorted in either ascending or descending order and the implementation always
+chooses the first or the last element as the pivot. In this case, the algorithm
+would only be able to split the list down to two extremely unbalanced
+partitions, one with zero length and the other with length \( n - 1 \),
+resulting in a \( \sim n \) recursion depth. Also, in each recursion call, \(
+\sim n \) comparisons are required to complete the partitioning step. The
+overall worst case performance is expected to be \( \mathcal{O}(n^2) \). The
+timing experiment result shown in Figure \ref{fig:worst} demonstrates the
+significant difference between quicksort on average case and worstcase.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{worst} 
+  \caption{Quicksort on average case and worstcase}
+  \label{fig:worst}
+\end{figure}
+
+For near-sorted lists of elements, insertion sort is expected to outperform
+quicksort. This is because quicksort has extra overhead from the recursive
+calls, while the core of the insertion sort is simply a \texttt{for} loop.
+Focusing on lists of length \( 1000 \), an experiment was conducted to compare
+the runtime of four types of sorting algorithms by varying the inversion factor
+of an input list. The inversion factor is a percentage of how many elements in a
+list are inverted in order. As discussed previously, a sorted (zero inversion)
+list is the worstcase for quicksort. Figure \ref{fig:near-sorted} reflects the
+relatively slow runtime of quicksort for lower inversion factors. However,
+quicksort took the lead at around 5\% inversion factor and performed
+significantly better than other elementary sorting algorithms for higher
+inversion factors.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{near-sorted} 
+  \caption{Runtime of different sorting algorithms on near-sorted-lists}
+  \label{fig:near-sorted}
+\end{figure}
+
+\subsection{Small Lists}
+
+
+
 \end{document}
