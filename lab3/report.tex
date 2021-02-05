@@ -11,6 +11,7 @@
 \usepackage{graphicx}
 \graphicspath{{./images/}}
 \usepackage{float}
+\usepackage{subcaption}
 
 \title{SE 2XB3 Group 4 Report 3}
 \author{
@@ -90,4 +91,45 @@ In conclusion, the non-in-place quicksort is slightly faster than the in-place
 one in practice. However, the in-place version has an observable speed
 improvement for an input size \( n > 10^6 \).
 
+\subsection{Multi-Pivot}
+
+Variants of quicksorts with different numbers of pivots were implemented and
+tested against the traditional single-pivot quicksort. It is worth noting that
+within the implementations of the quicksorts with two or more pivots, the
+provided single-pivot quicksort is used to sort the chosen pivots and any input
+array of length less than the number of pivots.
+
+The performance of the quicksort variants was tested using arrays of length \(
+10^4 \leq n < 10^7 \) (input size). As a result, the quad-pivot quicksort
+outperformed the other sorting algorithms and was chosen as the recommended
+quicksort. As shown in Figure \ref{fig:multp}, given an input size, the
+quicksort finished faster as the number of pivots increased. The runtime
+differences between variants widened as the input size increased. However, the
+time advantage of the quad-pivot variant is only significant in the input range
+\( n > 10^6 \). Figure \ref{fig:multp-zoomed} provide the zoomed-in views for \(
+10^4 <= n <= 10^5 \) and \( 10^4 <= n <= 10^6 \). The performance of all
+algorithms is rather unstable in these two ranges. There is no clear superior
+out of the four tested variants. Therefore, the quad-pivot quicksort is
+concluded to be the fastest solely based on its better performance on large
+sized inputs.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{multp} 
+  \caption{Multi-pivot quicksorts runtimes}
+  \label{fig:multp}
+\end{figure}
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{multp-zoomed-1} 
+  \end{subfigure}%
+  \begin{subfigure}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{multp-zoomed-2} 
+  \end{subfigure}
+  \caption{Quicksort variants on lower scale \( n \)}
+  \label{fig:multp-zoomed}
+\end{figure}
 \end{document}
