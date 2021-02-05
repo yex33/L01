@@ -4,6 +4,7 @@ from multiprocessing import Pool
 
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib import rc
 
 from lab3 import create_near_sorted_list, create_random_list, my_quicksort
 from sorts import (bubble_sort, dual_pivot_quicksort, insertion_sort,
@@ -11,6 +12,8 @@ from sorts import (bubble_sort, dual_pivot_quicksort, insertion_sort,
                    tri_pivot_quicksort)
 
 sys.setrecursionlimit(2000)
+rc("font", **{"family": "serif", "size": 12})
+rc("text", usetex=True)
 
 
 # in-place version timing experiments
@@ -95,13 +98,13 @@ def multp_exp():
     # plotting for muti-poivt
     plt.figure()
     plt.plot(N_log10, qs1_data,
-             "o-", color="black", lw=1, ms=3, label="my_quicksort")
+             "o-", color="black", lw=1, ms=3, label="my\_quicksort")
     plt.plot(N_log10, qs2_data,
-             "o-", color="green", lw=1, ms=3, label="dual_pivot")
+             "o-", color="green", lw=1, ms=3, label="dual-pivot")
     plt.plot(N_log10, qs3_data,
-             "o-", color="blue", lw=1, ms=3, label="tri_pivot")
+             "o-", color="blue", lw=1, ms=3, label="tri-pivot")
     plt.plot(N_log10, qs4_data,
-             "o-", color="red", lw=1, ms=3, label="quad_pivot")
+             "o-", color="red", lw=1, ms=3, label="quad-pivot")
     plt.legend()
     plt.title("Semi-log plot for multi-pivots quicksort")
     plt.xlabel("$\log_{10}{n}$, array of size $n$")
@@ -181,7 +184,7 @@ def worst_exp():
     plt.plot(N, sel_data, color="blue", linewidth=1, label="selection sort")
     plt.plot(N, ins_data, color="red", linewidth=1, label="insertion sort")
     plt.title("Quad-pivot quicksort and elementary sorts on near-sorted-lists")
-    plt.xlabel("Sorted Factor (%)")
+    plt.xlabel("Sorted Factor (\%)")
     plt.ylabel("Runtime (s)")
     plt.legend()
     plt.savefig("images/near-sorted.png", dpi=300)
@@ -221,11 +224,11 @@ def small_exp():
     ins_data = np.array(ins_res)
 
     # plotting for muti-poivt
-    plt.figure()
-    plt.plot(N, qui_data, color="black", lw=1, label="quicksort_inplace")
-    plt.plot(N, bub_data, color="green", lw=1, label="bubble_sort")
-    plt.plot(N, sel_data, color="blue", lw=1, label="selection_sort")
-    plt.plot(N, ins_data, color="red", lw=1, label="insertion_sort")
+    plt.figure(figsize=(7, 4.8))
+    plt.plot(N, qui_data, color="black", lw=1, label="quicksort\_inplace")
+    plt.plot(N, bub_data, color="green", lw=1, label="bubble sort")
+    plt.plot(N, sel_data, color="blue", lw=1, label="selection sort")
+    plt.plot(N, ins_data, color="red", lw=1, label="insertion sort")
     plt.legend()
     plt.title("Runtime of elementary sorts on small lists")
     plt.xlabel("$n$, array size")
@@ -236,5 +239,5 @@ def small_exp():
 if __name__ == "__main__":
     # ip_exp()
     # multp_exp()
-    worst_exp()
-    # small_exp()
+    # worst_exp()
+    small_exp()
