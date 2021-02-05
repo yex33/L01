@@ -129,4 +129,3 @@ def insertion_sort(L):
             L[pos] = L[pos-1]
             pos = pos-1
         L[pos] = curr
-

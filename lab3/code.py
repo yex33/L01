@@ -1,19 +1,17 @@
+import sys
 import timeit
 from multiprocessing import Pool
 
 import matplotlib.pyplot as plt
 import numpy as np
 
-from lab3 import (create_random_list, my_quicksort, 
-                  create_near_sorted_list)
-
-import sys
-
+from lab3 import create_near_sorted_list, create_random_list, my_quicksort
 from sorts import (bubble_sort, dual_pivot_quicksort, insertion_sort,
                    quad_pivot_quicksort, quicksort_inplace, selection_sort,
                    tri_pivot_quicksort)
 
 sys.setrecursionlimit(2000)
+
 
 # in-place version timing experiments
 def run_mult(func, n, n_proc):
@@ -97,13 +95,13 @@ def multp_exp():
     # plotting for muti-poivt
     plt.figure()
     plt.plot(N_log10, qs1_data,
-             "o-", color='black', lw=1, ms=3, label="my_quicksort")
+             "o-", color="black", lw=1, ms=3, label="my_quicksort")
     plt.plot(N_log10, qs2_data,
-             "o-", color='green', lw=1, ms=3, label="dual_pivot")
+             "o-", color="green", lw=1, ms=3, label="dual_pivot")
     plt.plot(N_log10, qs3_data,
-             "o-", color='blue', lw=1, ms=3, label="tri_pivot")
+             "o-", color="blue", lw=1, ms=3, label="tri_pivot")
     plt.plot(N_log10, qs4_data,
-             "o-", color='red', lw=1, ms=3, label="quad_pivot")
+             "o-", color="red", lw=1, ms=3, label="quad_pivot")
     plt.legend()
     plt.title("Semi-log plot for multi-pivots quicksort")
     plt.xlabel("$\log_{10}{n}$, array of size $n$")
@@ -115,73 +113,78 @@ def multp_exp():
     plt.xlim(4, 5)
     plt.ylim(0, 0.3)
     plt.savefig("images/multp-zoomed-2.png", dpi=300)
-    
-    
+
+
 # Compare worst case with average case of quicksort
-n_range = range(10, 1_000, 10)
-worst_res = []    # worst case results
-average_res = []  # average case results
+def worst_exp():
+    n_range = range(10, 1_000, 10)
+    worst_res = []    # worst case results
+    average_res = []  # average case results
 
-for n in n_range:
-    L = create_random_list(n)
-    qs = quad_pivot_quicksort
-    average_time = timeit.timeit("qs(L)", globals=globals(), number=1)
-    average_res.append(average_time)
-    worst_time = timeit.timeit("qs(L)", globals=globals(), number=1)
-    worst_res.append(worst_time)
+    for n in n_range:
+        L = create_random_list(n)
+        qs = quad_pivot_quicksort
+        average_time = timeit.timeit("qs(L)", globals=locals(), number=1)
+        average_res.append(average_time)
+        worst_time = timeit.timeit("qs(L)", globals=locals(), number=1)
+        worst_res.append(worst_time)
 
-N = np.array(list(n_range))
-average_data = np.array(average_res)
-worst_data = np.array(worst_res)
+    N = np.array(list(n_range))
+    average_data = np.array(average_res)
+    worst_data = np.array(worst_res)
 
-# plotting for worst case vs average case
-plt.figure()
-plt.plot(N, average_data, color='blue', linewidth=0.5, label="average_case")
-plt.plot(N, worst_data, color='red', linewidth=0.5, label="worst_case")
-plt.legend()
-plt.show()
+    # plotting for worst case vs average case
+    plt.figure()
+    plt.plot(N, average_data, color="blue", linewidth=1, label="average case")
+    plt.plot(N, worst_data, color="red", linewidth=1, label="worst case")
+    plt.title("Quad-pivot quicksort in average and in worst case")
+    plt.xlabel("$n$, array size")
+    plt.ylabel("Runtime (s)")
+    plt.legend()
+    plt.savefig("images/worst.png", dpi=300)
 
-# Compare quicksort with elementary sorting algorithms
-n_range = []
-for i in range(0, 100):
-    n_range.append(0.01 * i)
-qs_res = []   #quicksort results
-bub_res = []  #bubble_sort results
-sel_res = []  #selection_sort results
-ins_res = []  #insertion_sort results
+    # Compare quicksort with elementary sorting algorithms
+    n_range = range(0, 100)
+    qs_res = []   # quicksort results
+    bub_res = []  # bubble_sort results
+    sel_res = []  # selection_sort results
+    ins_res = []  # insertion_sort results
 
-for n in n_range:
-    L = create_near_sorted_list(1000, n)
-    L2 = L.copy()
-    L3 = L.copy()
-    L4 = L.copy()
-    qs = quad_pivot_quicksort
-    bub = bubble_sort
-    sel = selection_sort
-    ins = insertion_sort
-    qs_time = timeit.timeit("qs(L)", globals=globals(), number=1)
-    qs_res.append(qs_time)
-    bub_time = timeit.timeit("bub(L2)", globals=globals(), number=1)
-    bub_res.append(bub_time)
-    sel_time = timeit.timeit("sel(L3)", globals=globals(), number=1)
-    sel_res.append(sel_time)
-    ins_time = timeit.timeit("ins(L4)", globals=globals(), number=1)
-    ins_res.append(ins_time) 
-    
-N = np.array(list(n_range))
-qs_data = np.array(qs_res)
-bub_data = np.array(bub_res)
-sel_data = np.array(sel_res)
-ins_data = np.array(ins_res)
+    for n in n_range:
+        L = create_near_sorted_list(1000, n / 100)
+        L2 = L.copy()
+        L3 = L.copy()
+        L4 = L.copy()
+        qs = quad_pivot_quicksort
+        bub = bubble_sort
+        sel = selection_sort
+        ins = insertion_sort
+        qs_time = timeit.timeit("qs(L)", globals=locals(), number=1)
+        qs_res.append(qs_time)
+        bub_time = timeit.timeit("bub(L2)", globals=locals(), number=1)
+        bub_res.append(bub_time)
+        sel_time = timeit.timeit("sel(L3)", globals=locals(), number=1)
+        sel_res.append(sel_time)
+        ins_time = timeit.timeit("ins(L4)", globals=locals(), number=1)
+        ins_res.append(ins_time)
 
-#plotting for quicksort vs elementary sorting algorithms
-plt.figure()
-plt.plot(N, qs_data, color='black', linewidth=0.5, label="quicksort")
-plt.plot(N, bub_data, color='green', linewidth=0.5, label="bubble_sort")
-plt.plot(N, sel_data, color='blue', linewidth=0.5, label="selection_sort")
-plt.plot(N, ins_data, color='red', linewidth=0.5, label="insertion_sort")
-plt.legend()
-plt.show()
+    N = np.array(list(n_range))
+    qs_data = np.array(qs_res)
+    bub_data = np.array(bub_res)
+    sel_data = np.array(sel_res)
+    ins_data = np.array(ins_res)
+
+    # plotting for quicksort vs elementary sorting algorithms
+    plt.figure()
+    plt.plot(N, qs_data, color="black", linewidth=1, label="quicksort")
+    plt.plot(N, bub_data, color="green", linewidth=1, label="bubble sort")
+    plt.plot(N, sel_data, color="blue", linewidth=1, label="selection sort")
+    plt.plot(N, ins_data, color="red", linewidth=1, label="insertion sort")
+    plt.title("Quad-pivot quicksort and elementary sorts on near-sorted-lists")
+    plt.xlabel("Sorted Factor (%)")
+    plt.ylabel("Runtime (s)")
+    plt.legend()
+    plt.savefig("images/near-sorted.png", dpi=300)
 
 
 # Compare quicksort with elementary sorting methods on small lists
@@ -219,10 +222,10 @@ def small_exp():
 
     # plotting for muti-poivt
     plt.figure()
-    plt.plot(N, qui_data, color='black', lw=1, label="quicksort_inplace")
-    plt.plot(N, bub_data, color='green', lw=1, label="bubble_sort")
-    plt.plot(N, sel_data, color='blue', lw=1, label="selection_sort")
-    plt.plot(N, ins_data, color='red', lw=1, label="insertion_sort")
+    plt.plot(N, qui_data, color="black", lw=1, label="quicksort_inplace")
+    plt.plot(N, bub_data, color="green", lw=1, label="bubble_sort")
+    plt.plot(N, sel_data, color="blue", lw=1, label="selection_sort")
+    plt.plot(N, ins_data, color="red", lw=1, label="insertion_sort")
     plt.legend()
     plt.title("Runtime of elementary sorts on small lists")
     plt.xlabel("$n$, array size")
@@ -233,5 +236,5 @@ def small_exp():
 if __name__ == "__main__":
     # ip_exp()
     # multp_exp()
-    small_exp()
-
+    worst_exp()
+    # small_exp()
