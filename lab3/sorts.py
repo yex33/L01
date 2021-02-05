@@ -1,4 +1,4 @@
-from lab3 import quicksort_copy
+from lab3 import quicksort_copy, my_quicksort
 
 
 def quicksort_inplace_rec(L, low, high):
@@ -129,3 +129,14 @@ def insertion_sort(L):
             L[pos] = L[pos-1]
             pos = pos-1
         L[pos] = curr
+
+
+def final_sort(L):
+    if len(L) == 1:
+        return
+    elif len(L) > 1 and len(L) <= 20:
+        insertion_sort(L)
+    elif len(L) > 20 and len(L) <= 10000:
+        my_quicksort(L)
+    else:
+        quad_pivot_quicksort(L)
