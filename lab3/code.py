@@ -106,7 +106,7 @@ def multp_exp():
     plt.plot(N_log10, qs4_data,
              "o-", color="red", lw=1, ms=3, label="quad-pivot")
     plt.legend()
-    plt.title("Semi-log plot for multi-pivots quicksort")
+    plt.title("Semi-log plot for multi-pivot quicksort")
     plt.xlabel("$\log_{10}{n}$, array of size $n$")
     plt.ylabel("Runtime (s)")
     plt.savefig("images/multp.png", dpi=300)
@@ -223,7 +223,7 @@ def small_exp():
     sel_data = np.array(sel_res)
     ins_data = np.array(ins_res)
 
-    # plotting for muti-poivt
+    # plotting for small lists
     plt.figure(figsize=(7, 4.8))
     plt.plot(N, qui_data, color="black", lw=1, label="quicksort\_inplace")
     plt.plot(N, bub_data, color="green", lw=1, label="bubble sort")
