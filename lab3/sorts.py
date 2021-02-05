@@ -136,7 +136,5 @@ def final_sort(L):
         return
     elif len(L) > 1 and len(L) <= 20:
         insertion_sort(L)
-    elif len(L) > 20 and len(L) <= 10000:
-        my_quicksort(L)
     else:
         quad_pivot_quicksort(L)
