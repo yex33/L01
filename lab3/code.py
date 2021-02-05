@@ -223,7 +223,7 @@ def small_exp():
     sel_data = np.array(sel_res)
     ins_data = np.array(ins_res)
 
-    # plotting for muti-poivt
+    # plotting for small lists
     plt.figure(figsize=(7, 4.8))
     plt.plot(N, qui_data, color="black", lw=1, label="quicksort\_inplace")
     plt.plot(N, bub_data, color="green", lw=1, label="bubble sort")
