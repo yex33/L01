@@ -192,7 +192,7 @@ def worst_exp():
 
 # Compare quicksort with elementary sorting methods on small lists
 def small_exp():
-    n_range = range(1, 20, 1)
+    n_range = range(1, 50)
     qui_res = []  # quicksort_inplace results
     bub_res = []  # bubblesort results
     sel_res = []  # selection results
@@ -204,16 +204,16 @@ def small_exp():
         sel = selection_sort
         ins = insertion_sort
         setup = "L1 = L.copy()"
-        qui_time = sum(timeit.repeat("qui(L1)", setup=setup,
+        qui_time = min(timeit.repeat("qui(L1)", setup=setup,
                                      globals=locals(), repeat=100, number=1))
         qui_res.append(qui_time)
-        bub_time = sum(timeit.repeat("bub(L1)", setup=setup,
+        bub_time = min(timeit.repeat("bub(L1)", setup=setup,
                                      globals=locals(), repeat=100, number=1))
         bub_res.append(bub_time)
-        sel_time = sum(timeit.repeat("sel(L1)", setup=setup,
+        sel_time = min(timeit.repeat("sel(L1)", setup=setup,
                                      globals=locals(), repeat=100, number=1))
         sel_res.append(sel_time)
-        ins_time = sum(timeit.repeat("ins(L1)", setup=setup,
+        ins_time = min(timeit.repeat("ins(L1)", setup=setup,
                                      globals=locals(), repeat=100, number=1))
         ins_res.append(ins_time)
 
