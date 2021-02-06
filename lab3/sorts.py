@@ -1,4 +1,4 @@
-from lab3 import quicksort_copy, my_quicksort
+from lab3 import quicksort_copy
 
 
 def quicksort_inplace_rec(L, low, high):

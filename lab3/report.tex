@@ -82,7 +82,7 @@ copying data around memory becomes obvious as \( n \) passes \( 10^6 \).
 
 To quantify the performance difference between the two versions, we used a
 rather simple model. Either version of quicksort is known to have a complexity
-of \( \mathcal{O}(n\lg{n}) \). We use \( c * n\lg{n} \) as an approximate model
+of \( \mathcal{O}(n\lg{n}) \). We use \( c\,*\,n\lg{n} \) as an approximate model
 of the imperial runtime. Thus we take the average of the differences of the \( c
 \) constants of the two versions as the quantified performance difference. From
 the same data set plotted above, for \( 10^4 \leq n < 10^7 \), the non-in-place
@@ -139,15 +139,16 @@ sized inputs.
 \label{sec:worst}
 
 The worstcase performance of quicksort happens when the input list is already
-sorted in either ascending or descending order and the implementation always
-chooses the first or the last element as the pivot. In this case, the algorithm
-would only be able to split the list down to two extremely unbalanced
-partitions, one with zero length and the other with length \( n - 1 \),
-resulting in a \( \sim n \) recursion depth. Also, in each recursion call, \(
-\sim n \) comparisons are required to complete the partitioning step. The
-overall worst case performance is expected to be \( \mathcal{O}(n^2) \). The
-timing experiment result shown in Figure \ref{fig:worst} demonstrates the
-significant difference between quicksort on average case and worstcase.
+sorted in either ascending or descending order and when the implementation
+always chooses the first or the last element as the pivot. In this case, the
+algorithm would only be able to split the list down to two extremely unbalanced
+partitions: one with zero length and the other with length \( n - 1 \). This
+partitioning scheme results in a \( \sim n \) recursion depth. Also, in each
+recursion call, \( \sim n \) comparisons are required to complete the
+partitioning step. The overall worstcase performance is expected to be \(
+\mathcal{O}(n^2) \). The timing experiment result shown in Figure
+\ref{fig:worst} demonstrates the significant difference between quicksort on
+average case and worstcase.
 
 \begin{figure}[h]
   \centering
