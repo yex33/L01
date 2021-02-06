@@ -40,6 +40,7 @@
 \section{Quicksort}
 
 \subsection{In-Place Version}
+\label{sec:in-place}
 
 Our implementation has its natural in-place advantage over the given
 implementation which uses auxiliary memory to store different partitions for
@@ -92,6 +93,7 @@ one in practice. However, the in-place version has an observable speed
 improvement for an input size \( n > 10^6 \).
 
 \subsection{Multi-Pivot}
+\label{sec:multp}
 
 Variants of quicksorts with different numbers of pivots were implemented and
 tested against the traditional single-pivot quicksort. It is worth noting that
@@ -134,6 +136,7 @@ sized inputs.
 \end{figure}
 
 \subsection{Worstcase Performance}
+\label{sec:worst}
 
 The worstcase performance of quicksort happens when the input list is already
 sorted in either ascending or descending order and the implementation always
@@ -174,7 +177,47 @@ inversion factors.
 \end{figure}
 
 \subsection{Small Lists}
+\label{sec:small}
 
+The experiment focused on small size lists, for input size \( 1 \leq n \leq 20
+\), the insertion sort performed the best compared to other three sorting
+algorithms as shown in Figure \ref{fig:small}. A small list has fewer unsorted
+elements than a large list, which shares some similarity with a near sorted
+list. And the insertion sort performed similarly in both two experiments.
+Therefore, insertion sort is the optimal approach while handling small size
+lists.
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{small}
+  \caption{Runtime of different sorting algorithms on small lists}
+  \label{fig:small}
+\end{figure}
+
+To summarize all the experiments above, we decided to define our
+\texttt{final\_sort} to be a hybrid of insertion sort and quad-pivot quicksort.
+When the length of the input list is sufficiently short (less than 20), we would
+use insertion sort. For any other lists with longer lengths, we would use
+quad-pivot quicksort.
+
+The purpose of designing this hybrid algorithm is to minimize the average
+runtime. From Section \ref{sec:in-place}, even though the in-place version of
+quicksort is faster than the non-in-place version on large scaled lists, it is
+still slower than the quad-pivot variant tested in Section \ref{sec:multp}.
+Furthermore, from Section \ref{sec:small}, insertion sort has an observable
+advantage over other algorithms in terms of runtime for lists of length 20 and
+below. As for the lessons learned from Section \ref{sec:worst}, near-sorted
+lists in descending order are worstcase for both insertion sort and quicksort
+with \( \mathcal{O}(n^2) \) complexity, while ascending ordered lists are best
+case for insertion sort but worstcase for quicksort. An ideal
+insertion-quicksort hybrid sorting algorithm would use insertion sort's best
+case to balance out quicksort's worstcase for ascending sorted lists. However,
+there is not sufficiently efficient algorithm to determine whether an input list
+is near-sorted. One possible solution to balance the worstcase for quicksort is
+to use a randomized quicksort. However, such implementation is beyond the scope
+of the lab. Therefore, we conclude that a hybrid sorting algorithm comprises
+insertion sort and quicksort which conditionally chooses a sorting algorithm
+based on the input size, is the best performing sorting algorithm on average
+case.
 
 \end{document}
