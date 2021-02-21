@@ -15,16 +15,12 @@ class Heap:
 
     def build_heap2(self):
         copied_data = self.data
-        new_heap = []
-        self.insert_values(new_heap, copied_data)
-        return new_heap
+        self.data = []
+        self.insert_values(copied_data)
 
     def build_heap3(self):
-        for element in self:
+        for element in self.data:
             self.sink(element)
-        for element in self:
-            if element > element.parent():
-                self.build_heap3(self)
 
     def sink(self, i):
         largest_known = i
