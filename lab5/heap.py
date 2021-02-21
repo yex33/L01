@@ -22,7 +22,6 @@ class Heap:
     def build_heap3(self):
         for i in range(self.length):
             self.sink(i)
-        print(self.data)
         if not self.is_heap():
             self.build_heap3()
 
