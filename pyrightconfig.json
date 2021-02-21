@@ -1,0 +1,16 @@
+{
+    "executionEnvironments": [
+        {
+            "root": "lab1"
+        },
+        {
+            "root": "lab2"
+        },
+        {
+            "root": "lab3"
+        },
+        {
+            "root": "lab5"
+        }
+    ]
+}
