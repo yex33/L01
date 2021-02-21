@@ -20,8 +20,8 @@ class Heap:
         return new_heap
 
     def build_heap3(self):
-        for i in self:
-            self.sink(i)
+        for element in self:
+            self.sink(element)
         for element in self:
             if element > element.parent():
                 self.build_heap3(self)
