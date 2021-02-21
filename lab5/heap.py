@@ -20,7 +20,7 @@ class Heap:
         return new_heap
 
     def build_heap3(self):
-        for i in range(self.length):
+        for i in self:
             self.sink(i)
         for element in self:
             if element > element.parent():
