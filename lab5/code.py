@@ -1,10 +1,8 @@
 from random import randint, shuffle
-
+from heap import Heap
 from k_heap import KHeap
 
-a = [randint(0, 100) for _ in range(30)]
-print(a)
-
-heap = KHeap(a, 3)
-print(heap.data)
-print(heap)
+a = [randint(0, 100) for _ in range(63)]
+print(Heap(a))
+# print(heap.data)
+# print(heap)
