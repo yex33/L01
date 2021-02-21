@@ -1,5 +1,6 @@
 import math
 
+
 class Heap:
     length = 0
     data = []
@@ -15,16 +16,20 @@ class Heap:
 
     def build_heap2(self):
         copied_data = self.data
-        new_heap = []
-        self.insert_values(new_heap, copied_data)
-        return new_heap
+        self.data = []
+        self.insert_values(copied_data)
 
     def build_heap3(self):
-        for element in self:
+        for element in self.data:
             self.sink(element)
-        for element in self:
-            if element > element.parent():
-                self.build_heap3(self)
+        if not self.is_heap():
+            self.build_heap3()
+
+    def is_heap(self):
+        for i in range(1, self.length):
+            if self.data[i] > self.data[self.parent(i)]:
+                return False
+        return True
 
     def sink(self, i):
         largest_known = i
