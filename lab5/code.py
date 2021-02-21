@@ -30,7 +30,7 @@ def Build_heap_test():
         build2_res.append(bh2_time)
         bh3_time = timeit.timeit("heap.build_heap3()", "heap.data = L.copy()", globals=locals(), number=1)
 
-    N = np.arrray(list(n_range))
+    N = np.array(list(n_range))
     bh1_data = np.array(build1_res)
     bh2_data = np.array(build2_res)
     bh3_data = np.array(build3_res)
@@ -43,3 +43,7 @@ def Build_heap_test():
     plt.title("Run time of three build_heap")
     plt.xlabel("$n$, heap size")
     plt.ylabel("Run time (s)")
+
+
+Build_heap_test()
+
