@@ -20,8 +20,9 @@ class Heap:
         self.insert_values(copied_data)
 
     def build_heap3(self):
-        for element in self.data:
-            self.sink(element)
+        for i in range(self.length):
+            self.sink(i)
+        print(self.data)
         if not self.is_heap():
             self.build_heap3()
 
