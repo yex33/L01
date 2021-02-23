@@ -47,7 +47,7 @@ def build_heap_test():
     plt.xlabel("$n$, heap size")
     plt.ylabel("Run time (s)")
     plt.legend()
-    plt.show()
+    plt.savefig("images/heap-comparison.png", dpi=300)
 
 
 if __name__ == "__main__":

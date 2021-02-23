@@ -12,6 +12,7 @@
 \graphicspath{{./images/}}
 \usepackage{float}
 \usepackage{subcaption}
+\usepackage{amssymb}
 
 \title{SE 2XB3 Group 4 Report 5}
 \author{
@@ -40,6 +41,30 @@
 \section{Building Heaps}
 \label{sec:build}
 
+\section{\(k\)-Heap}
+\label{sec:kheap}
+
+The asymptotic complexity of \texttt{sink} is believed to be \(\mathcal{O}(k
+\log_{k}{n})\). In a \(k\)-heap, the nodes are organized in a complete \(k\)-ary
+tree of height \(\log_{k}{n}\). In the worst case, a node \(e\), needs to “sink”
+through \(\log_{k}{n}\) levels. On each level, \(k\) comparisons are required to
+find the maximum element on the level. The maximum would then be swapped with
+node \(e\). Hence, the complexity of \texttt{sink} is \(k\) comparisons times
+\(\log_{k}{n}\) levels, \(\mathcal{O}(k \log_{k}{n})\).
+
+A \(k\)-heap is essentially a \(k\)-ary tree. The height of a \(k\)-ary tree is
+\(\log_{k}{n}\), which is smaller than that of a binary tree (heap), \(\lg{n}\).
+The \texttt{swim} operation on a \(k\)-ary heap is \(\mathcal{O}(\log_{k}{n})\).
+On the other hand, a larger \(k\) results in requiring more comparisons for
+\texttt{sink} on each level of the tree. Therefore, in cases where applications
+depending solely on the \texttt{swim} operation are prioritized over all other
+operations, \(k\)-heaps of a large \(k\) have a huge advantage over binary
+heaps. In other cases where \texttt{sink} or both \texttt{swim} and
+\texttt{sink} are heavily used, such as Heapsort, \(k\)-heaps of any \(k\) are
+not significantly better than binary heaps. In fact, the function family \(y =
+k\log_{k}{x}\) minimizes for \(k \in \mathbb{N}\) at \(k = 3\), which means
+3-ary heap is better than binary heap in most aspects, and any \(k\)-heap of \(k
+> 3\) trades off its \texttt{sink} performance for that of \texttt{swim}.
 
 
 \end{document}
