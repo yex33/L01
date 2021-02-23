@@ -33,11 +33,7 @@ def build_heap_test():
         bh3_time = timeit.timeit("heap.build_heap3()", setup, globals=locals(), number=1)
         build3_res.append(bh3_time)
 
-<<<<<<< HEAD
-    N = np.array(list(n_range))
-=======
     N = np.array(n_range)
->>>>>>> 0ab305c7f77cc71fe2299f8d70f31e0005261e70
     bh1_data = np.array(build1_res)
     bh2_data = np.array(build2_res)
     bh3_data = np.array(build3_res)
@@ -50,16 +46,9 @@ def build_heap_test():
     plt.title("Run time of three algorithms for building heaps")
     plt.xlabel("$n$, heap size")
     plt.ylabel("Run time (s)")
-<<<<<<< HEAD
-
-
-Build_heap_test()
-
-=======
     plt.legend()
     plt.savefig("images/heap-comparison.png", dpi=300)
 
 
 if __name__ == "__main__":
     build_heap_test()
->>>>>>> 0ab305c7f77cc71fe2299f8d70f31e0005261e70
