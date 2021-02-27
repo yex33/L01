@@ -17,7 +17,8 @@ class Heap:
     def build_heap2(self):
         copied_data = self.data
         self.data = []
-        self.insert_values(copied_data)
+        for e in copied_data:
+            self.insert(e)
 
     def build_heap3(self):
         for i in range(self.length):

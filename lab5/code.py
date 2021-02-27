@@ -22,13 +22,12 @@ def build_heap_test():
 
     for n in n_range:
         L = create_random_list(n)
-        heap = Heap([])
-        setup = "heap.data = L.copy()"
-        bh1_time = timeit.timeit("heap.build_heap1()", setup, globals=locals(), number=1)
+        setup = "from heap import Heap;h = Heap([]);h.data = L.copy()"
+        bh1_time = min(timeit.repeat("h.build_heap1()", setup, globals=locals(), repeat=10, number=1))
         build1_res.append(bh1_time)
-        bh2_time = timeit.timeit("heap.build_heap2()", setup, globals=locals(), number=1)
+        bh2_time = min(timeit.repeat("h.build_heap2()", setup, globals=locals(), repeat=10, number=1))
         build2_res.append(bh2_time)
-        bh3_time = timeit.timeit("heap.build_heap3()", setup, globals=locals(), number=1)
+        bh3_time = min(timeit.repeat("h.build_heap3()", setup, globals=locals(), repeat=10, number=1))
         build3_res.append(bh3_time)
 
     N = np.array(n_range)
@@ -63,13 +62,13 @@ def build_heap_test():
     plt.legend()
     plt.savefig("images/build1.png", dpi=300)
 
-    # linear regression for 1
+    # linear regression for 2
     a, b = np.polyfit(N, bh2_data, 1)
     x = N
     y = a * x + b
     rsq = np.corrcoef(bh2_data, y)[0, 1] ** 2
     plt.figure()
-    plt.scatter(N, bh2_data, s=0.3, label="build heap1")
+    plt.scatter(N, bh2_data, s=0.3, label="build heap2")
     plt.plot(x, y, lw=0.5, color="red", label="Regression")
     plt.title("Linear regression on build heap2")
     plt.xlabel("$n$, heap size")
@@ -78,6 +77,22 @@ def build_heap_test():
     plt.annotate(equation_text, xy=(x[5], y[2 * len(y) // 3]))
     plt.legend()
     plt.savefig("images/build2.png", dpi=300)
+
+    # linear regression for 3
+    a, b, c = np.polyfit(np.log(N), bh3_data, 2)
+    x = N
+    y = a * np.log(x) ** 2 + b * np.log(x) + c
+    rsq = np.corrcoef(bh3_data, y)[0, 1] ** 2
+    plt.figure()
+    plt.scatter(N, bh3_data, s=0.3, label="build heap3")
+    plt.plot(x, y, lw=0.5, color="red", label="Regression")
+    plt.title("Linear regression on build heap3")
+    plt.xlabel("$n$, heap size")
+    plt.ylabel("Run time (s)")
+    equation_text = f"$y = ({a:.4g})(\ln x)^2 + ({b:.4g})\ln x + ({c:.4g})$\n$R^2 = {rsq:.4g}$"
+    plt.annotate(equation_text, xy=(x[5], y[2 * len(y) // 3]))
+    plt.legend()
+    plt.savefig("images/build3.png", dpi=300)
 
 
 if __name__ == "__main__":
