@@ -14,7 +14,7 @@ class KHeap:
             self.sink(i)
 
     def parent(self, i: int) -> int:
-        return i // self.k
+        return (i - 1) // self.k
 
     def children(self, i: int) -> List[int]:
         start = i * self.k + 1
