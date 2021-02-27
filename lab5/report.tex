@@ -41,6 +41,9 @@
 \section{Building Heaps}
 \label{sec:build}
 
+\subsection{Estimations}
+\label{sec:estimate}
+
 \begin{description}
 \item[\texttt{build\_heap\_1}] A loose upper bound is easy to establish since
   \texttt{sink} is \(\mathcal{O}(\lg{n})\) and less than \(n\) nodes are
@@ -76,6 +79,70 @@
   the complexity of the \texttt{sink} operations. Thus, the expected complexity
   of this heap building algorithm is \(\mathcal{O}(n (\lg{n})^2)\).
 \end{description}
+
+\subsection{Experiments}
+\label{sec:experiment}
+
+The results of empirical timing experiments was unexpected.
+\texttt{build\_heap\_2} was surprisingly slow. The run time of
+\texttt{build\_heap\_2} was around the order of \(10^{-4}\) while the others were
+of the order \(10^{-7}\). The different is so large that the scatter plots of the
+other algorithms were suppressed down to a straight line when plotted along with
+\texttt{build\_heap\_2}, as shown in Figure \ref{fig:comp}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{heap-comparison} 
+  \caption{Heap building algorithms comparison}
+  \label{fig:comp}
+\end{figure}
+
+The plotted data for both \texttt{build\_heap\_1} (in Figure \ref{fig:build1})
+and \texttt{build\_heap\_3} (in Figure \ref{fig:build3}) is rather unstable.
+Even though we tried to mitigate the effects of undesired factors like system
+resources reallocation by running multiple tests on one input size and take the
+fastest run time as the result for the input size, the regressions modeled with
+our estimation did not fit well with the data.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{build1} 
+  \caption{\texttt{build\_heap\_1} run time}
+  \label{fig:build1}
+\end{figure}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{build3} 
+  \caption{\texttt{build\_heap\_3} run time}
+  \label{fig:build3}
+\end{figure}
+
+As for \texttt{build\_heap\_2} (in Figure \ref{fig:build2}), the data suggested
+a linear growth. This is also different from our prediction. One of the proposed
+reason is that inserting a list of elements into an empty heap is essentially
+copying an array, along with the \texttt{bubble\_up} operation. In empirical
+timing, the copying or appending action is a lot slower than the element
+swapping involved in the \texttt{bubble\_up} operation. Therefore, the
+\(\mathcal{O}(n)\) copying complexity dominates the empirical run time because
+its run time is at a lower magnitude.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{build2} 
+  \caption{\texttt{build\_heap\_2} run time}
+  \label{fig:build2}
+\end{figure}
+
+\subsection{\texttt{build\_heap\_3} Improvement}
+\label{sec:inprove}
+
+The depth of the heap causes the poor performance. If the larger elements are at
+the bottom of the heap, we would need to heapify the nodes multiple times to get
+the heap structure. The number of heapifying depends on the depth of the heap.
+
+Improvement: Decreasing the depth of the heap can reduce the number of
+heapifies. The more children each node can obtain, the shallower the heap depth
+would be. In this way we could minimize the number of times moving the biggest
+elements from bottom to top. Consequently, the performance of
+\texttt{build\_heap\_3} will be improved.
 
 \section{\(k\)-Heap}
 \label{sec:kheap}
