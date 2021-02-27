@@ -15,9 +15,7 @@ def create_random_list(n):
 
 # build_heap(1, 2, and 3) timing test
 def build_heap_test():
-    n_range = (list(range(10 ** 4, 10 ** 5, 10 ** 4)))
-               # + list(range(10 ** 5, 10 ** 6, 10 ** 5))
-               # + list(range(10 ** 6, 10 ** 7, 10 ** 6)))
+    n_range = (list(range(10 ** 3, 10 ** 5, 10 ** 3)))
     build1_res = []
     build2_res = []
     build3_res = []
