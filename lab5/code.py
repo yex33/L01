@@ -15,7 +15,7 @@ def create_random_list(n):
 
 # build_heap(1, 2, and 3) timing test
 def build_heap_test():
-    n_range = (list(range(10 ** 3, 10 ** 5, 10 ** 3)))
+    n_range = list(range(10 ** 1, 10 ** 3))
     build1_res = []
     build2_res = []
     build3_res = []
@@ -38,14 +38,46 @@ def build_heap_test():
 
     # plotting for build_heap 1 2 and 3
     plt.figure()
-    plt.plot(N, bh1_data, color="blue", linewidth=1, label="build heap1")
-    plt.plot(N, bh2_data, color="black", linewidth=1, label="build heap2")
-    plt.plot(N, bh3_data, color="red", linewidth=1, label="build heap3")
+    plt.scatter(N, bh1_data, color="blue", s=0.3, label="build heap1")
+    plt.scatter(N, bh2_data, color="black", s=0.3, label="build heap2")
+    plt.scatter(N, bh3_data, color="red", s=0.3, label="build heap3")
     plt.title("Run time of three algorithms for building heaps")
     plt.xlabel("$n$, heap size")
     plt.ylabel("Run time (s)")
     plt.legend()
     plt.savefig("images/heap-comparison.png", dpi=300)
+
+    # linear regression for 1
+    a, b = np.polyfit(N, bh1_data, 1)
+    x = N
+    y = a * x + b
+    rsq = np.corrcoef(bh1_data, y)[0, 1] ** 2
+    plt.figure()
+    plt.scatter(N, bh1_data, s=0.3, label="build heap1")
+    plt.plot(x, y, lw=0.5, color="red", label="Regression")
+    plt.title("Linear regression on build heap1")
+    plt.xlabel("$n$, heap size")
+    plt.ylabel("Run time (s)")
+    equation_text = f"$y = ({a:.4g})x + ({b:.4g})$\n$R^2 = {rsq:.4g}$"
+    plt.annotate(equation_text, xy=(x[5], y[-5]))
+    plt.legend()
+    plt.savefig("images/build1.png", dpi=300)
+
+    # linear regression for 1
+    a, b = np.polyfit(N, bh2_data, 1)
+    x = N
+    y = a * x + b
+    rsq = np.corrcoef(bh2_data, y)[0, 1] ** 2
+    plt.figure()
+    plt.scatter(N, bh2_data, s=0.3, label="build heap1")
+    plt.plot(x, y, lw=0.5, color="red", label="Regression")
+    plt.title("Linear regression on build heap2")
+    plt.xlabel("$n$, heap size")
+    plt.ylabel("Run time (s)")
+    equation_text = f"$y = ({a:.4g})x + ({b:.4g})$\n$R^2 = {rsq:.4g}$"
+    plt.annotate(equation_text, xy=(x[5], y[2 * len(y) // 3]))
+    plt.legend()
+    plt.savefig("images/build2.png", dpi=300)
 
 
 if __name__ == "__main__":
