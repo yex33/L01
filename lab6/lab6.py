@@ -7,9 +7,6 @@ class RBNode:
         self.parent = None
         self.colour = "R"
 
-    def get_uncle(self):
-        return
-
     def is_leaf(self):
         return self.left == None and self.right == None
 
@@ -48,14 +45,43 @@ class RBNode:
         return "(" + str(self.value) + "," + self.colour + ")"
 
     def __repr__(self):
-         return "(" + str(self.value) + "," + self.colour + ")"
+        return "(" + str(self.value) + "," + self.colour + ")"
 
     def rotate_right(self):
-        #TODO
+        if self.left is None:
+            return
+        node = self.left
+        self.left = node.right
+        if node.right is not None:
+            node.right.parent = self
+        node.right = self
+        if self.parent is not None:
+            if self.is_left_child():
+                self.parent.left = node
+            else:
+                self.parent.right = node
+            node.parent = self.parent
+        else:  # self is root
+            node.parent = None
+        self.parent = node
 
     def rotate_left(self):
-        #TODO
-
+        if self.right is None:
+            return
+        node = self.right
+        self.right = node.left
+        if node.left is not None:
+            node.left.parent = self
+        node.left = self
+        if self.parent is not None:
+            if self.is_left_child():
+                self.parent.left = node
+            else:
+                self.parent.right = node
+            node.parent = self.parent
+        else:
+            node.parent = None
+        self.parent = node
 
 
 class RBTree:
@@ -100,14 +126,32 @@ class RBTree:
                 self.__insert(node.right, value)
 
     def fix(self, node):
-        #You may alter code in this method if you wish, it's merely a guide.
-        if node.parent == None:
+        # You may alter code in this method if you wish, it's merely a guide.
+        if node.parent is None:
             node.make_black()
-        while node != None and node.parent != None and node.parent.is_red(): 
-            #TODO
-        self.root.make_black()
-                    
-        
+        elif node.get_brother() is not None and node.get_brother().is_red():
+            node.make_black()
+            node.get_brother().make_black()
+            node.parent.make_red()
+            self.fix(node.parent)
+        elif node.is_right_child():
+            if node.parent.is_red():
+                node.parent.rotate_left()
+                self.fix(node.left)
+            else:
+                node.parent.rotate_left()
+                if node.parent is None:  # is root
+                    self.root = node
+                node.make_black()
+                node.left.make_red()
+        elif node.parent.parent is not None and node.parent.is_red():
+            node.parent.parent.rotate_right()
+            node.parent.make_black()
+            node.get_brother().make_red()
+            if node.parent.parent is None:  # is root
+                self.root = node.parent
+            self.fix(node)
+
     def __str__(self):
         if self.is_empty():
             return "[]"
@@ -119,5 +163,5 @@ class RBTree:
         if node.left == None:
             return "[" + str(node) + " -> " + self.__str_helper(node.right) + "]"
         if node.right == None:
-            return "[" +  self.__str_helper(node.left) + " <- " + str(node) + "]"
+            return "[" + self.__str_helper(node.left) + " <- " + str(node) + "]"
         return "[" + self.__str_helper(node.left) + " <- " + str(node) + " -> " + self.__str_helper(node.right) + "]"
