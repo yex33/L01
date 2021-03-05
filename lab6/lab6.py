@@ -127,29 +127,39 @@ class RBTree:
 
     def fix(self, node):
         # You may alter code in this method if you wish, it's merely a guide.
+        # Case 1: node is the root
         if node.parent is None:
             node.make_black()
+        # Case 2: two red children
         elif node.get_brother() is not None and node.get_brother().is_red():
             node.make_black()
             node.get_brother().make_black()
             node.parent.make_red()
+            # recursively fix the red color parent
             self.fix(node.parent)
         elif node.is_right_child():
+            # Case 3: left-right red
             if node.parent.is_red():
                 node.parent.rotate_left()
+                # transformed into Case 5
                 self.fix(node.left)
+            # Case 4: right-leaning red
             else:
                 node.parent.rotate_left()
-                if node.parent is None:  # is root
+                # before rotation node is the left child of root
+                if node.parent is None:
                     self.root = node
                 node.make_black()
                 node.left.make_red()
+        # Case 5: left-left red
         elif node.parent.parent is not None and node.parent.is_red():
             node.parent.parent.rotate_right()
             node.parent.make_black()
             node.get_brother().make_red()
-            if node.parent.parent is None:  # is root
+            # before rotation node is the left-left grandson of root
+            if node.parent.parent is None:
                 self.root = node.parent
+            # transformed into Case 2
             self.fix(node)
 
     def __str__(self):
