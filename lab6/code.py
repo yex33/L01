@@ -189,4 +189,4 @@ def near_heights():
 if __name__ == "__main__":
     multi_ascend()
     rand_heights()
-    # near_heights()
+    near_heights()
