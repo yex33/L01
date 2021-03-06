@@ -11,8 +11,9 @@
 
 \usepackage{graphicx}
 \graphicspath{{./images/}}
+\usepackage{hyperref}
 \usepackage{float}
-\usepackage{subcaption}
+% \usepackage{subcaption}
 \usepackage{amssymb}
 
 \title{SE 2XB3 Group 4 Report 6}
@@ -71,6 +72,41 @@ the more clustered the inserted elements are, the more tree rotations would be
 triggered, subsequently, the more the LLRB tree resembles a full binary tree,
 the shorter the overall tree is.
 
+To find out the average height of a LLRB tree after inserting 10,000 random
+numbers and compare it with that of a BST, we performed 1,000 rounds of tests
+and plotted the result in Figure \ref{fig:rand}. The height of the BST is on
+average 12.9 levels taller than the LLRB tree's after 10,000 insertions.
+Observing the clear difference in heights and noting that the performance of
+binary tree based algorithm is often a function of the tree height, we believe
+that in general, RBTs should always be used over BSTs. As for cases when
+inserting elements into a BST and a RBT/LLRB tree which share similar heights,
+we believe the RBT insertion would be slower simply because of the function
+overheads and extra computations for the balancing process. However, this
+difference is negligible on an asymptotic scale. One insertion operation in
+either a BST or a RBT takes \(\mathcal{O}(\lg{n})\) time.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{rand} 
+  \caption{Average heights of LLRB compared to BST on 10,000 random numbers}
+  \label{fig:rand}
+\end{figure}
+
+Figure \ref{fig:near} suggests a comparison of the heights between a BST and a
+RBT/LLRB tree after 10,000 insertions. More samples were taken to get a detailed
+depiction of the behaviour of BST insertions in the first quarter of the sorted
+factor scale. The plotted height for each sample point on the scale is an
+average of 5 rounds of insertions. A significant difference of performances
+between the two was observed, especially when the inversion factor is low. It is
+concluded that LLBR trees have a much better worst case performance than BST.
+For the remaining portion on the sorted factor scale, LLBR continued to out
+perform BST in terms of tree heights. This again confirm our belief in RBT being
+a strictly better searching data structure than BST.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{near} 
+  \caption{Average heights of LLBR and BST on 10,000 numbers of various sorted factor}
+  \label{fig:near}
+\end{figure}
 
 
 \end{document}
