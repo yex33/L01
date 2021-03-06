@@ -1,7 +1,6 @@
 import math
 import random
 import sys
-import timeit
 from multiprocessing import Pool
 
 import matplotlib.pyplot as plt
