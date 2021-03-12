@@ -1,7 +1,6 @@
 import math
 import random
 import sys
-import timeit
 from multiprocessing import Pool
 
 import matplotlib.pyplot as plt
@@ -189,4 +188,4 @@ def near_heights():
 if __name__ == "__main__":
     multi_ascend()
     rand_heights()
-    # near_heights()
+    near_heights()
