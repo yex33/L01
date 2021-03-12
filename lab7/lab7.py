@@ -1,5 +1,6 @@
 from collections import deque
 
+
 #Undirected graph using an adjacency list
 class Graph:
 
@@ -22,8 +23,8 @@ class Graph:
             self.adj[node1].append(node2)
             self.adj[node2].append(node1)
 
-    def number_of_nodes():
-        return len()
+    def number_of_nodes(self):
+        return len(self.adj)
 
 
 #Breadth First Search
@@ -59,3 +60,31 @@ def DFS(G, node1, node2):
                     return True
                 S.append(node)
     return False
+
+
+def BFS2(G, node1, node2):
+    if node1 == node2:
+        return [node1]
+    Q = deque([node1])
+    marked = {node1: True}
+    prev = {}
+    for node in G.adj:
+        if node != node1:
+            marked[node] = False
+    while len(Q) != 0:
+        current_node = Q.popleft()
+        for node in G.adj[current_node]:
+            if not marked[node]:
+                Q.append(node)
+                marked[node] = True
+                prev[node] = current_node
+    if not G.adj[node2]:
+        return []
+    else:
+        path = []
+        at = node2
+        while not at == node1:
+            path.append(at)
+            at = prev[at]
+        path.append(node1)
+        return path.reverse()
