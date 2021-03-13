@@ -20,7 +20,7 @@ def BFS2(G, node1, node2):
                 Q.append(node)
                 marked[node] = True
                 prev[node] = current_node
-    if not G.adj[node2]:
+    if node2 not in prev:
         return []
     else:
         path = []
@@ -139,6 +139,6 @@ def is_connected(G: Graph):
     for i in range(G.number_of_nodes()):
         for j in range(i + 1, G.number_of_nodes()):
             keys = list(G.adj.keys())
-            if BFS2(G, keys[i], keys[j]) == []:
+            if DFS2(G, keys[i], keys[j]) == []:
                 return False
     return True
