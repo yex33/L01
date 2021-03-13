@@ -111,3 +111,10 @@ def has_cycle(G: Graph) -> bool:
                     stack.append(node)
                 marked[cur] = True
     return False
+
+def is_connected(G):
+    for i in G.adj:
+        for j in G.adj:
+            if BFS2(G, i, j) == []:
+                return False
+    return True
