@@ -29,23 +29,34 @@ def BFS2(G, node1, node2):
             path.append(at)
             at = prev[at]
         path.append(node1)
-        return path.reverse()
+        path.reverse()
+        return path
+
 
 def DFS2(G: Graph, source: int, target: int) -> List[int]:
     if source == target:
         return [source]
     stack = [source]
     marked = {node: False for node in G.adj}
+    marked[source] = True
     path = []
     while len(stack) != 0:
-        path.append(stack.pop())
-        if not marked[path[-1]]:
-            for node in G.adj[path[-1]]:
-                if node == target:
-                    return path + [node]
+        cur = stack[-1]
+        if len(path) == 0 or path[-1] != cur:
+            path.append(cur)
+        has_unvisited = False
+        for node in G.adj[cur]:
+            if node == target:
+                return path + [node]
+            if not marked[node]:
                 stack.append(node)
-            marked[path[-1]] = True
+                marked[node] = True
+                has_unvisited = True
+        if not has_unvisited:
+            path.pop()
+            stack.pop()
     return []
+
 
 def BFS3(G: Graph, source: int) -> Dict[int, int]:
     queue = deque([source])
@@ -61,6 +72,7 @@ def BFS3(G: Graph, source: int) -> Dict[int, int]:
                 marked[node] = True
     return pred
 
+
 def DFS3(G: Graph, source: int) -> Dict[int, int]:
     stack = [source]
     marked = {node: False for node in G.adj}
@@ -74,6 +86,7 @@ def DFS3(G: Graph, source: int) -> Dict[int, int]:
                 stack.append(node)
             marked[cur] = True
     return pred
+
 
 def has_cycle_bfs(G: Graph) -> bool:
     sources = set(G.adj.keys())
@@ -92,6 +105,7 @@ def has_cycle_bfs(G: Graph) -> bool:
                 elif node in queue:
                     return True
     return False
+
 
 def has_cycle(G: Graph) -> bool:
     sources = set(G.adj.keys())
