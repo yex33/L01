@@ -126,6 +126,7 @@ def has_cycle(G: Graph) -> bool:
                 marked[cur] = True
     return False
 
+
 def is_connected(G):
     for i in G.adj:
         for j in G.adj:
