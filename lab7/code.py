@@ -45,7 +45,6 @@ def connected_vs_c():
     plt.title("Portions of graphs which is connected with $c$ random edges")
     plt.xlabel("$c$, Number of Edges Added")
     plt.ylabel("Portion of Connected Graphs (\%)")
-    plt.show()
     plt.savefig("images/connect.png", dpi=300)
 
 if __name__ == "__main__":
