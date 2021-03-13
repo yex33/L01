@@ -4,6 +4,33 @@ from typing import Dict, List
 from lab7 import Graph
 
 
+def BFS2(G, node1, node2):
+    if node1 == node2:
+        return [node1]
+    Q = deque([node1])
+    marked = {node1: True}
+    prev = {}
+    for node in G.adj:
+        if node != node1:
+            marked[node] = False
+    while len(Q) != 0:
+        current_node = Q.popleft()
+        for node in G.adj[current_node]:
+            if not marked[node]:
+                Q.append(node)
+                marked[node] = True
+                prev[node] = current_node
+    if not G.adj[node2]:
+        return []
+    else:
+        path = []
+        at = node2
+        while not at == node1:
+            path.append(at)
+            at = prev[at]
+        path.append(node1)
+        return path.reverse()
+
 def DFS2(G: Graph, source: int, target: int) -> List[int]:
     if source == target:
         return [source]
