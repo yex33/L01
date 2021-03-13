@@ -139,10 +139,6 @@ def is_connected(G: Graph):
     for i in range(G.number_of_nodes()):
         for j in range(i + 1, G.number_of_nodes()):
             keys = list(G.adj.keys())
-            if DFS2(G, keys[i], keys[j]) == []:
+            if BFS2(G, keys[i], keys[j]) == []:
                 return False
-    # for i in G.adj:
-    #     for j in G.adj:
-    #         if DFS2(G, i, j) == []:
-    #             return False
     return True
