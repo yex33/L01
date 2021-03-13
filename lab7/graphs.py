@@ -88,7 +88,7 @@ def DFS3(G: Graph, source: int) -> Dict[int, int]:
     return pred
 
 
-def has_cycle_bfs(G: Graph) -> bool:
+def has_cycle(G: Graph) -> bool:
     sources = set(G.adj.keys())
     while len(sources) > 0:
         source = list(sources)[0]
@@ -107,29 +107,42 @@ def has_cycle_bfs(G: Graph) -> bool:
     return False
 
 
-def has_cycle(G: Graph) -> bool:
-    sources = set(G.adj.keys())
-    while len(sources) > 0:
-        source = list(sources)[0]
-        stack = [source]
-        marked = {node: False for node in G.adj}
-        cur = -100
-        while len(stack) != 0:
-            parent = cur
-            cur = stack.pop()
-            if not marked[cur]:
-                sources.remove(cur)
-                for node in G.adj[cur]:
-                    if marked[node] and node != parent:
-                        return True
-                    stack.append(node)
-                marked[cur] = True
-    return False
+# def has_cycle(G: Graph) -> bool:
+#     sources = set(G.adj.keys())
+#     while len(sources) > 0:
+#         source = list(sources)[0]
+#         stack = [source]
+#         marked = {node: False for node in G.adj}
+#         marked[source] = True
+#         path = []
+#         while len(stack) != 0:
+#             cur = stack[-1]
+#             if len(path) == 0 or path[-1] != cur:
+#                 path.append(cur)
+#             if cur in sources:
+#                 sources.remove(cur)
+#             has_unvisited = False
+#             for node in G.adj[cur]:
+#                 if marked[node] and node != cur:
+#                     return True
+#                 if not marked[node]:
+#                     stack.append(node)
+#                     marked[node] = True
+#                     has_unvisited = True
+#             if not has_unvisited:
+#                 path.pop()
+#                 stack.pop()
+#     return False
 
 
-def is_connected(G):
-    for i in G.adj:
-        for j in G.adj:
-            if BFS2(G, i, j) == []:
+def is_connected(G: Graph):
+    for i in range(G.number_of_nodes()):
+        for j in range(i + 1, G.number_of_nodes()):
+            keys = list(G.adj.keys())
+            if DFS2(G, keys[i], keys[j]) == []:
                 return False
+    # for i in G.adj:
+    #     for j in G.adj:
+    #         if DFS2(G, i, j) == []:
+    #             return False
     return True
