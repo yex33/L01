@@ -1,5 +1,6 @@
 from collections import deque
 
+
 #Undirected graph using an adjacency list
 class Graph:
 
@@ -22,8 +23,8 @@ class Graph:
             self.adj[node1].append(node2)
             self.adj[node2].append(node1)
 
-    def number_of_nodes():
-        return len()
+    def number_of_nodes(self):
+        return len(self.adj)
 
 
 #Breadth First Search
