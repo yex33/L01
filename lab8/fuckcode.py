@@ -1,5 +1,5 @@
 from lab8 import WeightedGraph
-from mst import prim1
+from mst import prim1, prim2
 
 graph = WeightedGraph(10)
 edges = [
@@ -28,3 +28,4 @@ edges = [
 for edge in edges:
     graph.add_edge(*edge)
 print(prim1(graph).adj)
+print(prim2(graph).adj)
