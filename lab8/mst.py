@@ -13,8 +13,11 @@ def prim1(graph: WeightedGraph) -> WeightedGraph:
             if w < min_edge[2] and ((v1 not in vis and v2 in vis)
                                     or (v1 in vis and v2 not in vis)):
                 min_edge = (v1, v2, w)
-        mst.add_edge(*min_edge)
-        vis.add(min_edge[1])
+        if min_edge != (-1, -1, 10000):
+            mst.add_edge(*min_edge)
+            vis.add(min_edge[1])
+        else:
+            print("possibly error")
     return mst
 
 
