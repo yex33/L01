@@ -1,5 +1,7 @@
-import min_heap
 import random
+
+import min_heap
+
 
 class DirectedWeightedGraph:
 
